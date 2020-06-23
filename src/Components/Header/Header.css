@@ -1,4 +1,6 @@
 .Header{
     background-color: white;
     margin: auto;
+    border-top: 1px solid #DCDCDC;
+    border-bottom : 1px solid #DCDCDC;
 }

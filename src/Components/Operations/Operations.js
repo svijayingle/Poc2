@@ -1,9 +1,7 @@
 import React ,{Component} from 'react';
 import './Operations.css';
 import { render } from '@testing-library/react';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-
+import Select from 'react-select';
 
 
 class Operations extends Component{
@@ -12,23 +10,50 @@ class Operations extends Component{
         super(props);
         this.state = {
             regionOptions : [
-                'Region-one', 'Region-two', 'Region-three'
+                { value: 0, label: 'Region-one' },
+                { value: 1, label: 'Region-two' },
+                { value: 2, label: 'Region-three' },
             ],
             keys :[
-                'key-1','key-2','key-3','key-4'
-            ]  
+                    [
+                        {value: 0,label: 'Region-one-key-1'},{value: 1,label: 'Region-one-key-2'},{value: 2,label: 'Region-one-key-3'},{value: 3,label: 'Region-one-key-4'}
+                    ],
+                    [
+                        {value: 0,label: 'Region-two-key-1'},{value: 1,label: 'Region-two-key-2'},{value: 2,label: 'Region-two-key-3'},{value: 3,label: 'Region-two-key-4'}
+                    ],
+                    [
+                        {value: 0,label: 'Region-three-key-1'},{value: 1,label: 'Region-three-key-2'},{value: 2,label: 'Region-three-key-3'},{value: 3,label: 'Region-three-key-4'}
+                    ]
+
+            ],
+            selectedOptionRegion : '' ,
+            selectedOptionKey : ''
         };
     }
-    
+    handleChangeRegion = selectedOptionRegion => {
+        this.setState({ selectedOptionRegion });
+        console.log(`Option selected:`, selectedOptionRegion);
+      };
+    handleChangeKey = selectedOptionKey=> {
+    this.setState({ selectedOptionKey });
+    console.log(`Option selected:`, selectedOptionKey);
+    };
     render(){
-        const regionOptions_defaultOption = this.state.regionOptions[0];
-        const key_defaultOption = this.state.keys[0];
         return(
 
             <div className='Operations'>
-                <Dropdown className='my-drop-down' options={this.state.regionOptions} onChange={this._onSelect} value={regionOptions_defaultOption} placeholder="Select an option" />
-                <br></br>
-                <Dropdown className='my-drop-down' options={this.state.keys} onChange={this._onSelect} value={key_defaultOption} placeholder="Select an option" />
+                <Select 
+                    className = {'my-drop-down'}
+                    value={this.state.selectedOptionegion}
+                    onChange={this.handleChangeRegion}
+                    options={this.state.regionOptions}
+                />
+                <Select 
+                    className = {'my-drop-down'}
+                    value={this.state.selectedOptionKey}
+                    onChange={this.handleChangeKey}
+                    options={this.state.keys[this.state.selectedOptionRegion.value]}
+                />
             </div>
         )
     }

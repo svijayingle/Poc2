@@ -1,6 +1,9 @@
 .Operations{
         align-items: center;
+        margin:1%;
 }
 .my-drop-down{
     width: 20%;
+    margin: auto;
+    margin-top: 1%;
 }
