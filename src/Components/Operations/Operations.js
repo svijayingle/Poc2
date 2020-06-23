@@ -31,7 +31,9 @@ class Operations extends Component{
         };
     }
     handleChangeRegion = selectedOptionRegion => {
-        this.setState({ selectedOptionRegion });
+        this.setState({ selectedOptionRegion:selectedOptionRegion,
+            selectedOptionKey:''
+         });
         console.log(`Option selected:`, selectedOptionRegion);
       };
     handleChangeKey = selectedOptionKey=> {
