@@ -56,6 +56,7 @@ class Operations extends Component{
     render(){
         var showLables = (this.state.selectedOptionRegion=='')? false:true;
         var showkeys = (this.state.selectedOptionLable=='')? false:true;
+        var editOption = (this.state.selectedOptionKey=='')? false:true;
      
         return(
 
@@ -81,6 +82,14 @@ class Operations extends Component{
                     onChange={this.handleChangeKey}
                     options={this.state.keys[this.state.selectedOptionRegion.value][this.state.selectedOptionLable.value]}
                 /> : null
+                }
+                { (editOption) ? 
+                <div className={'my-drop-down'}>
+                    <textarea className={'form-control'}> </textarea>
+                    <br></br>
+                    <input type="submit" className={'btn btn-success'}></input>
+                </div>
+                 : null
                 }
             </div>
         )
