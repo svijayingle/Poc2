@@ -61,35 +61,44 @@ class Operations extends Component{
         return(
 
             <div className='Operationsclass'>
-                <Select 
-                    className = {'my-drop-down'}
-                    value={this.state.selectedOptionegion}
-                    onChange={this.handleChangeRegion}
-                    options={this.state.regionOptions}
-                />
+                    <label>Select Region :</label>
+                    <Select 
+                        className = {'my-drop-down'}
+                        value={this.state.selectedOptionegion}
+                        onChange={this.handleChangeRegion}
+                        options={this.state.regionOptions}
+                    />
+                
                 { (showLables) ? 
-                <Select 
-                    className = {'my-drop-down'}
-                    value={this.state.selectedOptionLables}
-                    onChange={this.handleChangeLables}
-                    options={this.state.lables}
-                /> : null
+                <div className = {'my-drop-down'}>
+                        <label>Select Lable :</label>
+                        <Select 
+                            
+                            value={this.state.selectedOptionLables}
+                            onChange={this.handleChangeLables}
+                            options={this.state.lables}
+                />
+                </div> : null
                 }
+               
                 { (showkeys) ? 
-                <Select 
-                    className = {'my-drop-down'}
-                    value={this.state.selectedOptionKey}
-                    onChange={this.handleChangeKey}
-                    options={this.state.keys[this.state.selectedOptionRegion.value][this.state.selectedOptionLable.value]}
-                /> : null
+                <div className = {'my-drop-down'}>
+                    <label>Select Key :</label>
+                    <Select 
+                        
+                        value={this.state.selectedOptionKey}
+                        onChange={this.handleChangeKey}
+                        options={this.state.keys[this.state.selectedOptionRegion.value][this.state.selectedOptionLable.value]}
+                    />                  
+                </div> : null
                 }
                 { (editOption) ? 
                 <div className={'my-drop-down'}>
+                    <label>Edit Options :</label>
                     <textarea className={'form-control'}> </textarea>
                     <br></br>
                     <input type="submit" className={'btn btn-success'}></input>
-                </div>
-                 : null
+                </div> : null
                 }
             </div>
         )
