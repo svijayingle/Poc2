@@ -54,9 +54,9 @@ class Operations extends Component{
     console.log(`Key selected:`, selectedOptionKey);
     };
     render(){
-        var showLables = (this.state.selectedOptionRegion=='')? false:true;
-        var showkeys = (this.state.selectedOptionLable=='')? false:true;
-        var editOption = (this.state.selectedOptionKey=='')? false:true;
+        var showLables = (this.state.selectedOptionRegion==='')? false:true;
+        var showkeys = (this.state.selectedOptionLable==='')? false:true;
+        var editOption = (this.state.selectedOptionKey==='')? false:true;
      
         return(
 
@@ -64,6 +64,7 @@ class Operations extends Component{
                     <label>Select Region :</label>
                     <Select 
                         className = {'my-drop-down'}
+                        placeholder={'Region '}
                         value={this.state.selectedOptionegion}
                         onChange={this.handleChangeRegion}
                         options={this.state.regionOptions}
@@ -73,7 +74,7 @@ class Operations extends Component{
                 <div className = {'my-drop-down'}>
                         <label>Select Lable :</label>
                         <Select 
-                            
+                            placeholder={'Lables'}
                             value={this.state.selectedOptionLables}
                             onChange={this.handleChangeLables}
                             options={this.state.lables}
@@ -85,7 +86,7 @@ class Operations extends Component{
                 <div className = {'my-drop-down'}>
                     <label>Select Key :</label>
                     <Select 
-                        
+                        placeholder={'keys'}
                         value={this.state.selectedOptionKey}
                         onChange={this.handleChangeKey}
                         options={this.state.keys[this.state.selectedOptionRegion.value][this.state.selectedOptionLable.value]}
