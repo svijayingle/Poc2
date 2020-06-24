@@ -11,51 +11,77 @@ class Operations extends Component{
         this.state = {
             regionOptions : [
                 { value: 0, label: 'Region-one' },
-                { value: 1, label: 'Region-two' },
-                { value: 2, label: 'Region-three' },
+                { value: 1, label: 'Region-two' }
             ],
+            lables : [
+                { value: 0, label: 'Alerts' },
+                { value: 1, label: 'Lables' },
+                { value: 2, label: 'Lables-1' }
+            ] ,
             keys :[
                     [
-                        {value: 0,label: 'Region-one-key-1'},{value: 1,label: 'Region-one-key-2'},{value: 2,label: 'Region-one-key-3'},{value: 3,label: 'Region-one-key-4'}
+                       [ {value: 0,label: 'R-1-l-1-key-1'},{value: 1,label: 'R-1-l-1-key-2'},{value: 2,label: 'R-1-l-1-key-3'}],
+                       [{value: 0,label: 'R-1-l-2-key-1'},{value: 1,label: 'R-1-l-2-key-2'},{value: 2,label: 'R-1-l-2-key-3'}],
+                       [{value: 0,label: 'R-1-l-3-key-1'},{value: 1,label: 'R-1-l-3-key-2'},{value: 2,label: 'R-1-l-3-key-3'}]
                     ],
                     [
-                        {value: 0,label: 'Region-two-key-1'},{value: 1,label: 'Region-two-key-2'},{value: 2,label: 'Region-two-key-3'},{value: 3,label: 'Region-two-key-4'}
-                    ],
-                    [
-                        {value: 0,label: 'Region-three-key-1'},{value: 1,label: 'Region-three-key-2'},{value: 2,label: 'Region-three-key-3'},{value: 3,label: 'Region-three-key-4'}
+                        [{value: 0,label: 'R-2-l-1-key-1'},{value: 1,label: 'R-2-l-1-key-2'},{value: 2,label: 'R-2-l-1-key-3'}],
+                        [{value: 0,label: 'R-2-l-2-key-1'},{value: 1,label: 'R-2-l-2-key-2'},{value: 2,label: 'R-2-l-2-key-3'}],
+                        [{value: 0,label: 'R-2-l-3-key-1'},{value: 1,label: 'R-2-l-3-key-2'},{value: 2,label: 'R-2-l-3-key-3'}]
                     ]
 
             ],
             selectedOptionRegion : '' ,
+            selectedOptionLable :'',
             selectedOptionKey : ''
         };
     }
     handleChangeRegion = selectedOptionRegion => {
         this.setState({ selectedOptionRegion:selectedOptionRegion,
-            selectedOptionKey:''
+            selectedOptionKey:'',
+            selectedOptionLable:''
          });
-        console.log(`Option selected:`, selectedOptionRegion);
+        console.log(`Region selected:`, selectedOptionRegion);
       };
+    handleChangeLables = selectedOptionLable=> {
+    this.setState({ selectedOptionLable:selectedOptionLable,
+                    selectedOptionKey:''
+         });
+    console.log(`Lable selected:`, selectedOptionLable);
+    };
     handleChangeKey = selectedOptionKey=> {
-    this.setState({ selectedOptionKey });
-    console.log(`Option selected:`, selectedOptionKey);
+    this.setState({ selectedOptionKey:selectedOptionKey });
+    console.log(`Key selected:`, selectedOptionKey);
     };
     render(){
+        var showLables = (this.state.selectedOptionRegion=='')? false:true;
+        var showkeys = (this.state.selectedOptionLable=='')? false:true;
+     
         return(
 
-            <div className='Operations'>
+            <div className='Operationsclass'>
                 <Select 
                     className = {'my-drop-down'}
                     value={this.state.selectedOptionegion}
                     onChange={this.handleChangeRegion}
                     options={this.state.regionOptions}
                 />
+                { (showLables) ? 
+                <Select 
+                    className = {'my-drop-down'}
+                    value={this.state.selectedOptionLables}
+                    onChange={this.handleChangeLables}
+                    options={this.state.lables}
+                /> : null
+                }
+                { (showkeys) ? 
                 <Select 
                     className = {'my-drop-down'}
                     value={this.state.selectedOptionKey}
                     onChange={this.handleChangeKey}
-                    options={this.state.keys[this.state.selectedOptionRegion.value]}
-                />
+                    options={this.state.keys[this.state.selectedOptionRegion.value][this.state.selectedOptionLable.value]}
+                /> : null
+                }
             </div>
         )
     }
