@@ -3,7 +3,16 @@
         margin:1%;
 }
 .my-drop-down{
-    width: 20%;
+    width: 40%;
     margin: auto;
     margin-top: 1%;
+}
+
+.Login-component {
+    background-image: url(./del.svg);
+    height: 50px;
+    width : 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

@@ -3,6 +3,7 @@ import './Operations.css';
 import { render } from '@testing-library/react';
 import Select from 'react-select';
 import e from './abc.js';
+import deleteImg from './del.svg';
 
 const defState = {
     regionOptions: [
@@ -121,17 +122,30 @@ class Operations extends Component{
                 }
                 { (editOption) ? 
                 <div className={'my-drop-down'}>
-                    <label>Edit Options :</label>
-                        <textarea
-                            className={'form-control'}
-                            value={this.state.selectedOptionKey.value}
-                            onChange={this.HandleValueChange}
-                        > </textarea>
+                        <label>Edit Options :</label>
+                            <table>
+                                <td>
+                                    <tr>
+                                    <textarea
+                                    className={'form-control'}
+                                    value={this.state.selectedOptionKey.value}
+                                    onChange={this.HandleValueChange}/>
+                                </tr>
+                            </td>
+                            <td>
+                                <tr>
+                                    <button
+                                        className = "Login-component"
+                                    />
+                                    </tr>
+                            </td>
+                        </table>
                         <br></br>
                         <form onSubmit={this.HandleSubmit}>
                         <input type="submit" className={'btn btn-success'}
                             style={{ visibility: this.state.isChanged === 1 ? 'visible' : 'hidden' }}
                             ></input>
+                            
                             </form>
                 </div> : null
                 }
