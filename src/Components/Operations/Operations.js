@@ -2,7 +2,7 @@ import React ,{Component} from 'react';
 import './Operations.css';
 import { render } from '@testing-library/react';
 import Select from 'react-select';
-
+import e from './abc.js';
 
 class Operations extends Component{
 
@@ -33,7 +33,8 @@ class Operations extends Component{
             ],
             selectedOptionRegion : '' ,
             selectedOptionLable :'',
-            selectedOptionKey : ''
+            selectedOptionKey: '',
+            selectedOptionValue: '',
         };
     }
     handleChangeRegion = selectedOptionRegion => {
@@ -49,15 +50,24 @@ class Operations extends Component{
          });
     console.log(`Lable selected:`, selectedOptionLable);
     };
-    handleChangeKey = selectedOptionKey=> {
-    this.setState({ selectedOptionKey:selectedOptionKey });
+    handleChangeKey = selectedOptionKey => {
+        this.setState({ selectedOptionKey: selectedOptionKey});
     console.log(`Key selected:`, selectedOptionKey);
     };
-    render(){
+
+
+    render() {
+        console.log(e)
         var showLables = (this.state.selectedOptionRegion==='')? false:true;
         var showkeys = (this.state.selectedOptionLable==='')? false:true;
         var editOption = (this.state.selectedOptionKey==='')? false:true;
-     
+        let optionsss = e.alerts.map((obj, index) => {
+            return {
+                label: obj.key,
+                value: obj.val,
+                key: index
+            }
+        });
         return(
 
             <div className='Operationsclass'>
@@ -77,8 +87,7 @@ class Operations extends Component{
                             placeholder={'Lables'}
                             value={this.state.selectedOptionLables}
                             onChange={this.handleChangeLables}
-                            options={this.state.lables}
-                />
+                            options={this.state.lables}/>
                 </div> : null
                 }
                
@@ -87,16 +96,19 @@ class Operations extends Component{
                     <label>Select Key :</label>
                     <Select 
                         placeholder={'keys'}
-                        value={this.state.selectedOptionKey}
-                        onChange={this.handleChangeKey}
-                        options={this.state.keys[this.state.selectedOptionRegion.value][this.state.selectedOptionLable.value]}
+                            value={this.state.selectedOptionKey}
+                            onChange={this.handleChangeKey}
+                            options={optionsss}
                     />                  
                 </div> : null
                 }
                 { (editOption) ? 
                 <div className={'my-drop-down'}>
                     <label>Edit Options :</label>
-                    <textarea className={'form-control'}> </textarea>
+                        <textarea
+                            className={'form-control'}
+                            value= {this.state.selectedOptionKey.value}
+                        > </textarea>
                     <br></br>
                     <input type="submit" className={'btn btn-success'}></input>
                 </div> : null
